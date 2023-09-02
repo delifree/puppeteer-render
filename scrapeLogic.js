@@ -3,7 +3,7 @@ require("dotenv").config();
 
 const scrapeLogic = async (res) => {
   const browser = await puppeteer.launch({
-    headless: false,
+    headless: "new",
     args: [
         "--disable-setuid-sandbox",
         "--no-sandbox",
@@ -33,7 +33,7 @@ const scrapeLogic = async (res) => {
 
   // Locate the full title with a unique string
   const textSelector = await page.waitForSelector(
-    'text/Check and update'
+    'text/Password'
   );
   const fullTitle = await textSelector?.evaluate(el => el.textContent);
 
