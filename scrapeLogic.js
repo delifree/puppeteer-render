@@ -3,7 +3,7 @@ require("dotenv").config();
 
 const scrapeLogic = async (res) => {
   const browser = await puppeteer.launch({
-    headless: false,
+    // headless: "new",
     args: [
         "--disable-setuid-sandbox",
         "--no-sandbox",
@@ -11,7 +11,7 @@ const scrapeLogic = async (res) => {
         "--no-zygote",
     ],
     executablePath:
-        process.env.NODE_ENV === 'production'
+        process.env.NODE_ENV === "production"
             ? process.env.PUPPETEER_EXECUTABLE_PATH
             : puppeteer.executablePath(),
 });
@@ -38,7 +38,7 @@ const scrapeLogic = async (res) => {
   const fullTitle = await textSelector?.evaluate(el => el.textContent);
 
   // Print the full title
-  const logStatement = `The title of this blog post is ${fullTitle}`
+  const logStatement = `The title of this blog post is ${fullTitle}`;
   console.log(logStatement);
   res.send(logStatement);
   } catch (e) {
